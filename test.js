@@ -74,7 +74,8 @@ test('try-read-json:', function () {
   test('should be callback(err), if JSON.parse throws', function (done) {
     tryReadJson('{"foo": "bar"\n"baz": ["qux"]}', function (err, json) {
       test.ifError(!err, 'should be error')
-      test.equal(err.message, 'Unexpected string')
+      test.equal(err.name, 'SyntaxError')
+      test.equal(err.message, 'Failed to parse JSON data: SyntaxError: Unexpected string')
       test.equal(json, undefined)
       done()
     })

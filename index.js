@@ -21,6 +21,7 @@ module.exports = function tryReadJson (input, callback) {
   try {
     json = JSON.parse(input)
   } catch (e) {
+    e.message = 'Failed to parse JSON data: ' + e.toString()
     return callback ? callback(e) : false
   }
   return callback && json ? callback(null, json) : json
