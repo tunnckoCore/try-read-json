@@ -1,6 +1,6 @@
 {
   "name": "try-read-json",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Fast, meaningful and correct try/catch flow for reading JSON with JSON.parse - support optional callback",
   "repository": "tunnckoCore/try-read-json",
   "author": "Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)",
