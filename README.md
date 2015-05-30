@@ -23,10 +23,10 @@ npm test
   + `null` when `input` is not a string
   + `null` when `input` is invalid JSON
   + `false` when JSON.parse throws
-- if callback is function `callback(err, json)`
-  + `err` and `json` are `null` when `input` is not a string
-  + `err` and `json` are `null` when `input` is invalid JSON
-  + `err` is error and `json === undefined`, when JSON.parse throws
+- if callback is function `callback(err, res)`
+  + `err` and `res` are `null` when `input` is not a string
+  + `err` and `res` are `null` when `input` is invalid JSON
+  + `err` is error and `res === undefined`, when JSON.parse throws
 
 ```js
 var tryReadJson = require('try-read-json')
@@ -34,33 +34,33 @@ var tryReadJson = require('try-read-json')
 tryReadJson(12345)
 //=> null
 
-tryReadJson(12345, function (err, json) {
+tryReadJson(12345, function (err, res) {
   console.log(err) //=> null
-  console.log(json) //=> null
+  console.log(res) //=> null
 })
 
 tryReadJson('foo bar baz')
 //=> null
 
-tryReadJson('foo bar baz', function (err, json) {
+tryReadJson('foo bar baz', function (err, res) {
   console.log(err) //=> null
-  console.log(json) //=> null
+  console.log(res) //=> null
 })
 
 tryReadJson('{"foo": "bar"}')
 //=> {foo: 'bar'}
 
-tryReadJson('{"foo": "bar"}', function (err, json) {
+tryReadJson('{"foo": "bar"}', function (err, res) {
   console.log(err) //=> null
-  console.log(json) //=> {foo: 'bar'}
+  console.log(res) //=> {foo: 'bar'}
 })
 
 tryReadJson('{"foo": "bar"\n"baz": ["qux"]}')
 //=> false, because Syntax Error
 
-tryReadJson('{"foo": "bar"\n"baz": ["qux"]}', function (err, json) {
-  console.log(err) //=> SyntaxError: 'Unexpected string'
-  console.log(json) //=> undefined
+tryReadJson('{"foo": "bar"\n"baz": ["qux"]}', function (err, res) {
+  console.log(err) //=> SyntaxError
+  console.log(res) //=> undefined
 })
 ```
 
