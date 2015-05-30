@@ -13,5 +13,20 @@
   "devDependencies": {
     "assertit": "^0.1.0"
   },
-  "keywords": []
+  "keywords": [
+    "catch",
+    "correct",
+    "data",
+    "fast",
+    "flow",
+    "json",
+    "meaningful",
+    "read",
+    "read-data",
+    "read-json",
+    "throws",
+    "try",
+    "try-catch",
+    "trycatch"
+  ]
 }
