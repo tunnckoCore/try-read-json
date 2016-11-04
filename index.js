@@ -6,3 +6,12 @@
  */
 
 'use strict'
+
+var tryCatch = require('try-catch-callback')
+
+module.exports = function tryReadJson (input, callback) {
+  return tryCatch(JSON.parse, {
+    args: input,
+    return: typeof callback !== 'function'
+  }, callback)
+}
