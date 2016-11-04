@@ -20,6 +20,61 @@ const tryReadJson = require('try-read-json')
 
 ## API
 
+### [tryReadJson](index.js#L68)
+> Parses `input` JSON value without throwing an errors.
+
+**Params**
+
+* `input` **{String|Number|Null|Boolean}**: json value    
+* `callback` **{Function}**: optional callback    
+* `returns` **{Undefined|Error}**: if something fails and there's no `callback` it returns that Error  
+
+**Example**
+
+```js
+var tryReadJson = require('try-read-json')
+
+// synchronous
+console.log(tryReadJson(1234)) // => 1234
+console.log(tryReadJson('1234')) // => 1234
+console.log(tryReadJson('["aaa", "bbb"]')) // => [ 'aaa', 'bbb' ]
+console.log(tryReadJson('{"foo": "bar"}')) // => { foo: 'bar' }
+console.log(tryReadJson(null)) // => null
+console.log(tryReadJson(true)) // => true
+console.log(tryReadJson(false)) // => false
+
+console.log(tryReadJson()) // => SyntaxError
+console.log(tryReadJson(undefined)) // => SyntaxError
+console.log(tryReadJson('{"foo:bxbba')) // => SyntaxError
+
+// with callback
+tryReadJson('{"foo":"bar"}', function cb (err, obj) {
+  console.log(err, obj) // => null, { foo: 'bar' }
+})
+
+tryReadJson(123, function cb (err, num) {
+  console.log(err, num) // => null, 123
+})
+
+tryReadJson('["aaa", "bbb"]', function cb (err, arr) {
+  console.log(err, arr) // => null, [ 'aaa', 'bbb' ]
+  console.log(arr[0]) // => 'aaa'
+  console.log(arr[1]) // => 'bbb'
+})
+
+tryReadJson('{foo fail', function cb (err) {
+  console.log(err) // => SyntaxError
+})
+
+tryReadJson(undefined, function cb (err) {
+  console.log(err) // => SyntaxError
+})
+
+tryReadJson(true, function cb (err, bool) {
+  console.log(err, bool) // => null, true
+})
+```
+
 ## Related
 - [always-done](https://www.npmjs.com/package/always-done): Handle completion and errors with elegance! Support for streams, callbacks, promises, child processes, async/await and sync functions. A drop-in replacement for [async-done… [more](https://github.com/hybridables/always-done#readme) | [homepage](https://github.com/hybridables/always-done#readme "Handle completion and errors with elegance! Support for streams, callbacks, promises, child processes, async/await and sync functions. A drop-in replacement for [async-done][] - pass 100% of its tests plus more")
 - [then-parse-json](https://www.npmjs.com/package/then-parse-json): Gracefully parse JSON using promises - promisified JSON.parse | [homepage](https://github.com/tunnckocore/then-parse-json#readme "Gracefully parse JSON using promises - promisified JSON.parse")
