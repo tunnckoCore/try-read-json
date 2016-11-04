@@ -64,6 +64,24 @@
     "tasks": [
       "readme"
     ],
+    "related": {
+      "list": [
+        "try-catch-callback",
+        "try-catch-core",
+        "always-done",
+        "then-parse-json",
+        "write-file",
+        "to-callback"
+      ]
+    },
+    "reflinks": [
+      "always-done",
+      "async-done",
+      "dezalgo",
+      "once",
+      "rfpify",
+      "try-catch-core"
+    ],
     "lint": {
       "reflinks": true
     }
